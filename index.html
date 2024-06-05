@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Letícia Werneck</title>
+    <link rel="icon" href="https://raw.githubusercontent.com/lewerneck/a9fk-morango/7848312f08fd016d26d7430fbbedae63f4e43b3b/d69b4b9b44820c8414c9c24ed6f1fec3.jpeg" type="image/png">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Letícia Werneck">
+    <meta property="og:description" content="Acesso: Pacote Cereja">
+    <meta property="og:url" content="lewerneck.github.io/x5pz-cereja"> <!-- Substitua URL_do_Site pela URL da página -->
+    <meta property="og:type" content="website">
+
+    <style>
+        body {
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .button {
+            display: block;
+            width: 80%;
+            max-width: 250px;
+            padding: 15px;
+            margin: 20px auto;
+            margin-top: 50px;
+            text-align: center;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+         @keyframes pulse {
+            from {
+                transform: scale(1);
+            }
+            to {
+                transform: scale(1.05);
+            }
+        }
+        .button-telegram {
+            background-color: #be0c88; /* Cor azul do ícone do Telegram */
+            box-shadow: 0 0 15px #be0c88; /* Sombra azul do ícone do Telegram */
+            animation: pulse 1.5s infinite; /* Adicionando a animação de pulsação */
+        }
+        .button-telegram:hover {
+            background-color: #be0c88; /* Cor azul escuro quando hover */
+        }
+
+        img {
+            max-width: 30%;
+            max-height: 30vh;
+            height: auto;
+            width: auto;
+        }
+
+        .custom-text {
+            color: #be0c88;
+            font-size: 24px; /* Tamanho do texto, ajuste conforme necessário */
+            margin-top: 20px; /* Espaço entre a imagem e o texto */
+        }
+    </style>
+</head>
+<body>
+  <script>
+        // Pixel do Facebook
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window,document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+
+        fbq('init', '424744653371009');
+        fbq('track', 'PageView_Clientes');
+
+        // Função para definir um cookie
+        function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+
+        // Função para obter um cookie
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }    
+
+        // Verifica se o evento de compra já foi registrado para este dispositivo
+        const purchaseEventRegistered = getCookie('purchaseEventRegistered');
+
+        if (!purchaseEventRegistered) {
+            fbq('track', 'Purchase');
+
+            // Marca o evento de compra como registrado
+            setCookie('purchaseEventRegistered', 'true', 365); // Valido por 1 ano
+        }
+    </script>
+    
+    <img src="https://raw.githubusercontent.com/lewerneck/a9fk-morango/7848312f08fd016d26d7430fbbedae63f4e43b3b/d69b4b9b44820c8414c9c24ed6f1fec3.jpeg">
+    <div class="custom-text">Letícia Werneck</div>  
+    <a id="telegramButton" class="button button-telegram" href="https://photos.app.goo.gl/sKDZskne2UB2aRwd6">PACOTE CEREJA<br>Acesse aqui!</a>
+
+  
+</body>
+</html>
