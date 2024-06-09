@@ -73,58 +73,84 @@
     </style>
 </head>
 <body>
-  <script>
-        // Pixel do Facebook
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window,document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
 
-        fbq('init', '424744653371009');
-        fbq('track', 'PageView_Clientes');
-
-        // Função para definir um cookie
-        function setCookie(name, value, days) {
-            var expires = "";
-            if (days) {
-                var date = new Date();
-                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-                expires = "; expires=" + date.toUTCString();
-            }
-            document.cookie = name + "=" + (value || "") + expires + "; path=/";
-        }
-
-        // Função para obter um cookie
-        function getCookie(name) {
-            var nameEQ = name + "=";
-            var ca = document.cookie.split(';');
-            for (var i = 0; i < ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-            }
-            return null;
-        }    
-
-        // Verifica se o evento de compra já foi registrado para este dispositivo
-        const purchaseEventRegistered = getCookie('purchaseEventRegistered');
-
-        if (!purchaseEventRegistered) {
-            fbq('track', 'Purchase');
-
-            // Marca o evento de compra como registrado
-            setCookie('purchaseEventRegistered', 'true', 365); // Valido por 1 ano
-        }
-    </script>
-    
     <img src="https://raw.githubusercontent.com/lewerneck/a9fk-morango/7848312f08fd016d26d7430fbbedae63f4e43b3b/d69b4b9b44820c8414c9c24ed6f1fec3.jpeg">
     <div class="custom-text">Letícia Werneck</div>  
-    <a id="telegramButton" class="button button-telegram" href="https://photos.app.goo.gl/sKDZskne2UB2aRwd6">PACOTE CEREJA<br>Acesse aqui!</a>
+    <button class="button button-telegram" id="telegramButton">PACOTE PÊSSEGO<br>Acesse aqui!</button>
 
-  
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Pixel do Facebook
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window,document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+
+            fbq('init', '424744653371009');
+            fbq('track', 'PageView_Clientes');
+
+            // Função para definir um cookie com informações adicionais
+            function setCookieWithProduct(name, product, value, days) {
+                var expires = "";
+                if (days) {
+                    var date = new Date();
+                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                    expires = "; expires=" + date.toUTCString();
+                }
+                // Adiciona o identificador do produto ao valor do cookie
+                var cookieValue = product + "=" + (value || "");
+                document.cookie = name + "=" + cookieValue + expires + "; path=/";
+            }
+
+            // Função para obter um cookie
+            function getCookie(name) {
+                var nameEQ = name + "=";
+                var ca = document.cookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+                }
+                return null;
+            }
+
+            // Função para verificar se o evento de compra já foi registrado para um produto específico
+            function hasPurchaseBeenRegisteredForProduct(product) {
+                return getCookie(product) === 'true';
+            }
+
+            // Função para registrar a compra apenas se ainda não foi registrada para o produto
+            function registerPurchaseIfNotRegistered(product) {
+                if (!hasPurchaseBeenRegisteredForProduct(product)) {
+                    fbq('track', 'Purchase');
+                    setCookieWithProduct('purchaseRegistered', product, 'true', 365); // Válido por 1 ano
+                }
+            }
+
+            // Função para registrar a compra e armazenar o produto no cookie
+            function registerPurchase(product) {
+                registerPurchaseIfNotRegistered(product);
+            }
+
+            // Identificador do produto atual
+            const product = "PacoteCereja";  // Substitua pelo identificador do produto atual
+
+            // Registro do evento de compra ao carregar a página
+            registerPurchase(product);
+
+            // Exibição do botão após o registro do evento de compra
+            document.getElementById("telegramButton").style.display = "block";
+
+            // Função para redirecionar após o clique no botão
+            document.getElementById("telegramButton").addEventListener("click", function() {
+                window.location.href = "https://photos.app.goo.gl/sKDZskne2UB2aRwd6";
+            });
+        });
+    </script>
 </body>
 </html>
